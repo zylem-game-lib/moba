@@ -23,6 +23,9 @@ importers:
       '@zylem/game-lib':
         specifier: link:../zylem/packages/game-lib
         version: link:../zylem/packages/game-lib
+      '@zylem/ui':
+        specifier: link:../zylem-ui
+        version: link:../zylem-ui
       http-proxy:
         specifier: ^1.18.1
         version: 1.18.1

@@ -7,7 +7,7 @@ export const ARENA_MODULE_NAME = 'arena';
 
 /**
  * WebSocket base URL for SpacetimeDB (see SpacetimeDB TS SDK: use `ws://` / `wss://`).
- * - **Dev:** defaults to `ws://127.0.0.1:3000`.
+ * - **Dev:** defaults to `ws://127.0.0.1:2002`.
  * - **Production:** set `VITE_STDB_URI` to the public HTTPS origin (e.g. another Render service), or omit it when the examples app and SpacetimeDB share the same origin (Docker nginx image) so `window.location.origin` is used.
  * See this repo's README for local and deployed SpacetimeDB setup.
  */
@@ -22,7 +22,7 @@ export function getArenaSpacetimeUri(): string {
 			return normalizeSpacetimeClientUri(origin);
 		}
 	}
-	return normalizeSpacetimeClientUri('ws://127.0.0.1:3000');
+	return normalizeSpacetimeClientUri('ws://127.0.0.1:2002');
 }
 
 function getBrowserLocationOrigin(): string | null {

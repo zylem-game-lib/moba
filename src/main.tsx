@@ -3,10 +3,14 @@ import { render } from 'solid-js/web';
 import { subscribe } from 'valtio/vanilla';
 import { ZylemGameElement } from '@zylem/game-lib/web-components';
 import { zylemEventBus, type GameLoadingPayload } from '@zylem/game-lib/events';
+import { mountBuildLabel } from '@zylem/ui/build-label';
+import { ZYLEM_PACKAGE_VERSIONS } from 'virtual:zylem-versions';
 import createArena from './arena/arena';
 import ArenaLobby from './arena/ArenaLobby/ArenaLobby';
 import { arenaLobbyStore } from './arena/networking/arena-lobby-store';
 import './styles.css';
+
+mountBuildLabel({ packages: ZYLEM_PACKAGE_VERSIONS });
 
 if (!customElements.get('zylem-game')) {
 	customElements.define('zylem-game', ZylemGameElement);

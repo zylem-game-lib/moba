@@ -6,9 +6,10 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { Agent } from 'https';
 import { Resolver } from 'dns';
+import { zylemVersionsPlugin } from '@zylem/ui/vite';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const devPort = Number(process.env.PORT ?? '1337');
+const devPort = Number(process.env.PORT ?? '3332');
 const defaultAllowedHosts = ['zylem.onrender.com', 'zylem-staging.onrender.com'];
 const additionalAllowedHosts = (process.env.__VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS ?? '')
 	.split(',')
@@ -57,7 +58,7 @@ const cdnProxyAgent = new Agent({
 });
 
 export default defineConfig({
-	plugins: [glsl(), vanillaExtractPlugin(), solidPlugin()] as any,
+	plugins: [zylemVersionsPlugin(__dirname), glsl(), vanillaExtractPlugin(), solidPlugin()] as any,
 	build: {
 		target: 'esnext',
 	},
@@ -78,11 +79,11 @@ export default defineConfig({
 		],
 	},
 	optimizeDeps: {
-		exclude: ['valtio'],
+		exclude: ['valtio', '@zylem/ui'],
 		include: ['valtio/vanilla'],
 	},
 	server: {
-		port: Number.isFinite(devPort) ? devPort : 1337,
+		port: Number.isFinite(devPort) ? devPort : 3332,
 		open: false,
 		allowedHosts,
 		fs: {
